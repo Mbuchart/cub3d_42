@@ -10,7 +10,6 @@ int	next_frame(t_data *data)
 	draw_rays3d(data);
 	draw_map_2d(data, data->map);
 	put_player(data, data->posx / 6, data->posy / 6);
-	//print_ray(data, 0x0000FFFF);
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	return (0);
 }

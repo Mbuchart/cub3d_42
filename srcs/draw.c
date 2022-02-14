@@ -99,46 +99,28 @@ void	draw_3d(t_data *data)
 {
 	draw_init(data);
 	draw_ceiling(data);
-	if (data->wall_index >= 0)
-	{
-		if (data->lineh < data->mh)
-			data->di = 0;
-		else
-			data->di = data->loff;
-		while (data->di < data->lineh + data->loff)
-		{
-			data->dy = 0;
-			while (data->dy < data->ml / 480)
-			{
-				my_mlx_pixel_put(data, data->li + data->dy, data->dx,
-				data->tex[data->wall_index][data->pos_tex]); // put wall texture ??
-				data->dy++;
-			}
-			data->di++;
-			data->dx++;
-			if (data->di > data->chl)
-			{
-				while (data->chl < data->di)
-				{
-					data->pos_tex += 64;
-					data->chl += data->ch;
-				}
-			}
-		}
-	}
-	else
-	{
+	if (data->lineh < data->mh)
 		data->di = 0;
-		while (data->di < data->lineh)
+	else
+		data->di = data->loff;
+	while (data->di < data->lineh + data->loff)
+	{
+		data->dy = 0;
+		while (data->dy < data->ml / 480)
 		{
-			data->dy = 0;
-			while (data->dy < data->ml / 480)
+			my_mlx_pixel_put(data, data->li + data->dy, data->dx,
+			data->tex[data->wall_index][data->pos_tex]); // put wall texture ??
+			data->dy++;
+		}
+		data->di++;
+		data->dx++;
+		if (data->di > data->chl)
+		{
+			while (data->chl < data->di)
 			{
-				my_mlx_pixel_put(data, data->li + data->dy, data->dx, 0x00FF0000); // put wall texture ??
-				data->dy++;
+				data->pos_tex += 64;
+				data->chl += data->ch;
 			}
-			data->di++;
-			data->dx++;
 		}
 	}
 	draw_floor(data);
