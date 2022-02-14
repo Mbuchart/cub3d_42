@@ -34,7 +34,6 @@ void	init_ra(t_data *data, int i)
 void	draw_rays3d(t_data *data)
 {
 	init_ra(data, 0);
-	load_texture(data);
 	data->r = 0;
 	while (data->r < WIN_L)
 	{
