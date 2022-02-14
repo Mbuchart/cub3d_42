@@ -19,10 +19,10 @@ float	draw_rays_ver3d2(t_data *data)
 			data->hx = data->rx;
 			data->hy = data->ry;
 			if (data->ra > P2 && data->ra < P3)		// west color / texture
-				data->colorw = 1;
+				data->colorw = 2;
 			if ((data->ra > P3 && data->ra < PI * 2)
 			|| (data->ra > 0 && data->ra < P2))		// east color / texture
-				data->colorw = 0x00964B00;
+				data->colorw = 3;
 			return (dist(data->posx, data->posy, data->hx, data->hy));
 		}
 		else

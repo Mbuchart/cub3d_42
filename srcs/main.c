@@ -158,7 +158,7 @@ char	**new_map(void)
 	tmp[8]  = "100000000000000000100000001";
 	tmp[9]  = "100000000000000000000000001";
 	tmp[10] = "110000000000000000011111111";
-	tmp[11] = "11010000000000000001111111";
+	tmp[11] = "110100000000000000011111111";
 	tmp[12] = "111100000000000000111111111";
 	tmp[13] = "111100000000000000000111111";
 	tmp[14] = "111110000000000000000111111";
@@ -170,7 +170,10 @@ char	**new_map(void)
 
 void	data_init(t_data *data)
 {
-	data->so = "../textures/eagle.xpm";
+	data->so = "./textures/crypto.xpm";
+	data->no = "./textures/eagle.xpm";
+	data->we = "./textures/greystone.xpm";
+	data->ea = "./textures/purplestone.xpm";
 	data->w = 0;
 	data->a = 0;
 	data->s = 0;
