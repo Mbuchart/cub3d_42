@@ -170,7 +170,7 @@ char	**new_map(void)
 
 void	data_init(t_data *data)
 {
-	data->so = "./textures/crypto.xpm";
+	data->so = "./textures/red.xpm";
 	data->no = "./textures/eagle.xpm";
 	data->we = "./textures/greystone.xpm";
 	data->ea = "./textures/purplestone.xpm";

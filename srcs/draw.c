@@ -41,7 +41,7 @@ void    draw_floor(t_data *data)
 	while (data->dx < data->mh)
 	{
 		data->dy = 0;
-		while (data->dy < data->ml / WIN_L)
+		while (data->dy < data->ml / 480)
 		{
 			my_mlx_pixel_put(data, data->li + data->dy, data->dx, 0x00550000);	//put floor color 
 			data->dy++;
@@ -63,12 +63,12 @@ void    draw_ceiling(t_data *data)
 		data->lineh = data->mh;
 		data->dx = 0;
 	}
-	data->li = data->r * (data->ml / WIN_L);
+	data->li = data->r * (data->ml / 480);
 	data->di = 0;
 	while (data->di < data->dx)
 	{
 		data->dy = 0;
-		while (data->dy < data->ml / WIN_L)
+		while (data->dy < data->ml / 480)
 		{
 			my_mlx_pixel_put(data, data->li + data->dy, data->di, 0x00FFFFFF); // put ceiling color
 			data->dy++;
@@ -107,8 +107,13 @@ void	draw_3d(t_data *data)
 			data->di = data->loff;
 		while (data->di < data->lineh + data->loff)
 		{
-			my_mlx_pixel_put(data, data->r, data->dx,
+			data->dy = 0;
+			while (data->dy < data->ml / 480)
+			{
+				my_mlx_pixel_put(data, data->li + data->dy, data->dx,
 				data->tex[data->wall_index][data->pos_tex]); // put wall texture ??
+				data->dy++;
+			}
 			data->di++;
 			data->dx++;
 			if (data->di > data->chl)
@@ -127,7 +132,7 @@ void	draw_3d(t_data *data)
 		while (data->di < data->lineh)
 		{
 			data->dy = 0;
-			while (data->dy < data->ml / WIN_L)
+			while (data->dy < data->ml / 480)
 			{
 				my_mlx_pixel_put(data, data->li + data->dy, data->dx, 0x00FF0000); // put wall texture ??
 				data->dy++;

@@ -24,7 +24,7 @@ void	init_ra(t_data *data, int i)
 	if (i == 0)
 		data->ra = data->pa - DR * 30;
 	else if (i == 1)
-		data->ra += (DR * 60) / WIN_L;
+		data->ra += (DR * 60) / 480;
 	if (data->ra < 0)
 		data->ra += 2 * PI;
 	if (data->ra > 2 * PI)
@@ -35,7 +35,7 @@ void	draw_rays3d(t_data *data)
 {
 	init_ra(data, 0);
 	data->r = 0;
-	while (data->r < WIN_L)
+	while (data->r < 480)
 	{
 		get_dist_ray(data);
 		draw_3d(data);
