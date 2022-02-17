@@ -4,12 +4,11 @@ int	next_frame(t_data *data)
 {
 	mlx_destroy_image(data->mlx, data->img);
 	data->img = mlx_new_image(data->mlx, data->ml, data->mh);
-	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixels, 
-										&data->line_length, &data->endian);
+	data->addr = mlx_get_data_addr(data->img, &data->bits_per_pixels,
+			&data->line_length, &data->endian);
 	move_player(data);
 	draw_rays3d(data);
 	draw_map_2d(data, data->map);
-	put_player(data, data->posx / 6, data->posy / 6);
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	return (0);
 }

@@ -1,40 +1,39 @@
 #include "../includes/cub3d.h"
 
-void    draw_we(t_data *data)
+void	draw_we(t_data *data)
 {
-		data->wall_index = data->colorw;           //index de tex[wall_index] which wall
-										// which wall so no we ea ??
-		
-		if (data->wall_index == 0 || data->wall_index == 1)
-		{
-			data->pos_tex = 0;          //draw_west
-			data->j = 0;
-			while (data->j < data->rx)
-				data->j += 64;
-			data->pos_tex = data->rx - (data->j - 64);
-			data->pos_tex = (data->pos_tex - 64) * -1;
-		}
-		// if (data->wall_index == 1)
-		// {
-		// 	data->pos_tex = 0;          //draw_west
-		// 	data->j = 0;
-		// 	while (data->j < data->rx)
-		// 		data->j += 64;
-		// 	data->pos_tex = data->rx - (data->j - 64);
-		// 	data->pos_tex = (data->pos_tex - 64) * -1;
-		// }
-		if (data->wall_index == 2 || data->wall_index == 3)
-		{
-			data->pos_tex = 0;          //draw_west
-			data->j = 0;
-			while (data->j < data->ry)
-				data->j += 64;
-			data->pos_tex = data->ry - (data->j - 64);
-			data->pos_tex = (data->pos_tex - 64) * -1;
-		}
+	data->wall_index = data->colorw;           //index de tex[wall_index] which wall
+									// which wall so no we ea ??
+	if (data->wall_index == 0 || data->wall_index == 1)
+	{
+		data->pos_tex = 0;          //draw_west
+		data->j = 0;
+		while (data->j < data->rx)
+			data->j += 64;
+		data->pos_tex = data->rx - (data->j - 64);
+		data->pos_tex = (data->pos_tex - 64) * -1;
+	}
+	// if (data->wall_index == 1)
+	// {
+	// 	data->pos_tex = 0;          //draw_west
+	// 	data->j = 0;
+	// 	while (data->j < data->rx)
+	// 		data->j += 64;
+	// 	data->pos_tex = data->rx - (data->j - 64);
+	// 	data->pos_tex = (data->pos_tex - 64) * -1;
+	// }
+	if (data->wall_index == 2 || data->wall_index == 3)
+	{
+		data->pos_tex = 0;          //draw_west
+		data->j = 0;
+		while (data->j < data->ry)
+			data->j += 64;
+		data->pos_tex = data->ry - (data->j - 64);
+		data->pos_tex = (data->pos_tex - 64) * -1;
+	}
 }
 
-void    draw_floor(t_data *data)
+void	draw_floor(t_data *data)
 {
 	if (data->lineh >= data->mh)
 		return ;
@@ -43,14 +42,14 @@ void    draw_floor(t_data *data)
 		data->dy = 0;
 		while (data->dy < data->ml / 480)
 		{
-			my_mlx_pixel_put(data, data->li + data->dy, data->dx, 0x00550000);	//put floor color 
+			my_mlx_pixel_put(data, data->li + data->dy, data->dx, data->colorf);	//put floor color 
 			data->dy++;
 		}
 		data->dx++;
 	}
 }
 
-void    draw_ceiling(t_data *data)
+void	draw_ceiling(t_data *data)
 {
 	if (data->lineh >= data->mh)
 	{
@@ -70,7 +69,7 @@ void    draw_ceiling(t_data *data)
 		data->dy = 0;
 		while (data->dy < data->ml / 480)
 		{
-			my_mlx_pixel_put(data, data->li + data->dy, data->di, 0x00FFFFFF); // put ceiling color
+			my_mlx_pixel_put(data, data->li + data->dy, data->di, data->colorc); // put ceiling color
 			data->dy++;
 		}
 		data->di++;
@@ -85,7 +84,6 @@ void	draw_init(t_data *data)
 	if (data->ca > 2 * PI)
 		data->ca -= 2 * PI;
 	draw_we(data);
-
 	data->loff = 0;
 	data->distt = data->distt * cos(data->ca);
 	data->lineh = (data->resx * data->mh) / data->distt;

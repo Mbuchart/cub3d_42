@@ -10,9 +10,9 @@ void	get_dist_ray(t_data *data)
 		data->disth = draw_rays_hor3d(data);
 	if (data->ra != P2 && data->ra != P3)
 		data->distv = draw_rays_ver3d(data);
-	if ((data->distv >= 0 && data->distv < data->disth) || data->disth < 0)	
+	if ((data->distv >= 0 && data->distv < data->disth) || data->disth < 0)
 		data->distt = data->distv;				// save distance to wall
-	else if ((data->disth >= 0 && data->disth < data->distv) || data->distv < 0) 
+	else if ((data->disth >= 0 && data->disth < data->distv) || data->distv < 0)
 	{
 		draw_rays_hor3d(data);
 		data->distt = data->disth;				// save distance to wall

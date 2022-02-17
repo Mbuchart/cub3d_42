@@ -2,7 +2,7 @@
 
 void	free_strs(char **str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -10,11 +10,23 @@ void	free_strs(char **str)
 	free(str);
 }
 
+void	find_div(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	if (data->mapx > data->mapy)
+		i = data->mapx;
+	else
+		i = data->mapy;
+	data->div = data->resx * i / 150;
+}
+
 void	put_player(t_data *data, int x, int y)
 {
-	int i;
-	int j;
-	float k;
+	int		i;
+	int		j;
+	float	k;
 
 	i = -2;
 	while (i <= 2)
@@ -31,24 +43,24 @@ void	put_player(t_data *data, int x, int y)
 	while (k < 5)
 	{
 		my_mlx_pixel_put(data, (x + data->pdx * k),
-						(y + data->pdy * k), 0x00FFFF00);
+			(y + data->pdy * k), 0x00FFFF00);
 		k += 0.1;
 	}
 }
 
 void	draw_map_2d2(t_data *data, int x, int y, int color)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
-	while (i <= data->resx / 6)
+	while (i <= data->resx / data->div)
 	{
 		j = 0;
-		while (j <= data->resy / 6)
+		while (j <= data->resy / data->div)
 		{
-			my_mlx_pixel_put(data, (x * data->resx / 6) + i,
-					(y * data->resy / 6) + j, color);
+			my_mlx_pixel_put(data, (x * data->resx / data->div) + i,
+				(y * data->resy / data->div) + j, color);
 			j++;
 		}
 		i++;
@@ -59,10 +71,9 @@ void	draw_map_2d(t_data *data, char **map)
 {
 	int	x;
 	int	y;
-	int	color;
 
 	x = 0;
-	color = 0x00FF0000;
+	find_div(data);
 	while (map[x] != NULL)
 	{
 		y = 0;
@@ -76,4 +87,5 @@ void	draw_map_2d(t_data *data, char **map)
 		}
 		x++;
 	}
+	put_player(data, data->posx / data->div, data->posy / data->div);
 }

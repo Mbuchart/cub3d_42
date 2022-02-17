@@ -1,23 +1,47 @@
 #ifndef CUB3D_H
-#define CUB3D_H
+# define CUB3D_H
 
-#include <math.h>
-#include "../mlx/mlx.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <unistd.h>
+# include <math.h>
+# include "../mlx/mlx.h"
+# include "../libft/libft.h"
+# include <stdio.h>
+# include <stdlib.h>
+# include <string.h>
+# include <unistd.h>
+# include <fcntl.h>
+# include <errno.h>
 
-#define WIN_H 540
-#define WIN_L 960
-#define HOOK_KEY_PRESSED 1L<<0
-#define HOOK_KEY_RELEASED 1L<<1
-#define PI 3.14159
-#define P2 PI / 2
-#define P3 3 * (PI / 2)
-#define DR 0.0174533
-#define TEX_H 64
-#define TEX_W 64
+# define WIN_H 540
+# define WIN_L 960
+# define HOOK_KEY_PRESSED 1L<<0
+# define HOOK_KEY_RELEASED 1L<<1
+# define PI 3.14159
+# define P2 PI / 2
+# define P3 3 * (PI / 2)
+# define DR 0.0174533
+# define TEX_H 64
+# define TEX_W 64
+
+typedef struct s_cub	t_cub;
+struct			s_cub
+{
+	char	*north;
+	char	*south;
+	char	*east;
+	char	*west;
+	char	sp_dir;
+	int		fd;
+	int		floor[3];
+	int		ceiling[3];
+	char	*dot_cub;
+	char 	**map;
+	char	*line;
+	char	*cub_file;
+	int		spawnx;
+	int		spawny;
+	int		height;
+	int		width;
+};
 
 typedef struct s_mlx	t_mlx;
 struct			s_mlx
@@ -51,6 +75,7 @@ struct	s_data
 	char	**map;
 	int		mapx;
 	int		mapy;
+	int		div;
 	//textures
 	int		tex[7][4096];
 	char	*no;
@@ -123,14 +148,48 @@ struct	s_data
 	float	disth;
 	float	distv;
 	float	colorw;
+	float	colorc;
+	float	colorf;
 };
+
+//parsing////////////////////////////////////////////////////////////
+//cub3d.c
+void	cub_init(t_cub *cub);
+void	ft_stop(int status, t_cub *cub, char *msg);
+void	free_all(t_cub *cub, int i);
+
+//parse_dot_cub.c
+void	parse_dot_cub(char *map, t_cub *cub);
+void	get_elements(t_cub *cub);
+void	find_texture(t_cub *cub, char **str);
+void	get_colors(t_cub *cub, int *tab);
+
+//parse_dot_cub_2.c
+void	parse_dot_cub_2(t_cub *cub);
+void	reset_map(t_cub *cub);
+
+//cub3d_utils.c
+int		mini_gnl(char *map, t_cub *cub, int *j);
+void	fill_from_dot_cub(t_cub *cub, char *map);
+void	malloc_dot_cub(t_cub *cub, char *map);
+void	display_description(t_cub *cub);// à retirer !!!
+
+//check_map.c
+void	check_map(t_cub *cub, char *map);
+void	malloc_map(t_cub *cub, char *map);
+void	malloc_map_2(t_cub *cub, char *map);
+void	scan_errors(t_cub *cub, char **map);
+void	flood_fill_algo(t_cub *cub, int limit, int x, int y);
 
 //execution///////////////////////////////////////////////////////////
 
 //libft_utils.c
-int     ft_strlen(char *str);
+/*int     ft_strlen(char *str);
 int		ft_atoi(char *str);
-char	*ft_itoa(int n);
+char	*ft_itoa(int n);*/
+
+//start_game.c
+void	start_game(t_cub *cub);
 
 //load_texture.c
 void	free_tex(t_data *data, t_mlx *tex, int i);
@@ -184,7 +243,7 @@ float	draw_rays_ver3d(t_data *data);
 void	draw_3d(t_data *data);
 
 //convert_base.c
-int		ft_atoi_base(char *str, char *base);
+//int		ft_atoi_base(char *str, char *base);
 
 //del_print_ray.c           a delete par la suite
 void	print_ray(t_data *data, int color);

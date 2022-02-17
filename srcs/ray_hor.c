@@ -1,12 +1,12 @@
 #include "../includes/cub3d.h"
 
-int		out_of_map(t_data *data)
+int	out_of_map(t_data *data)
 {
 	if (data->mx >= data->mapy || data->my >= data->mapx
-		|| data->mx < 0 || data->my < 0 ||
-		(data->mx == 0 && data->rx < 0) ||
-		(data->my == 0 && data->ry < 0) ||
-		data->my > ft_strlen(data->map[data->mx]))
+		|| data->mx < 0 || data->my < 0
+		|| (data->mx == 0 && data->rx < 0)
+		|| (data->my == 0 && data->ry < 0)
+		|| data->my > ft_strlen(data->map[data->mx]))
 		return (1);
 	return (0);
 }

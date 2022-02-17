@@ -20,8 +20,6 @@ void	pos_wall(t_data *data)
 	data->iposy_sub_wyo = (data->posy - data->wyo) / data->resy;
 }
 
-
-
 void	move_player2(t_data *data)
 {
 	if (data->d == 1)
