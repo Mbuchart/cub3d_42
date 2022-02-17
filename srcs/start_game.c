@@ -39,6 +39,19 @@ float	rgbtohex(int r, int g, int b)
 	return (r << 16 | g << 8 | b);
 }
 
+float	dir_pos(t_cub *cub)
+{
+	if (cub->sp_dir == 'N')
+		return (P3);
+	if (cub->sp_dir == 'S')
+		return (P2);
+	if (cub->sp_dir == 'W')
+		return (PI);
+	if (cub->sp_dir == 'E')
+		return (0);
+	return (0);
+}
+
 void	data_init(t_data *data, t_cub *cub)
 {
 	data->so = cub->south;
@@ -63,7 +76,7 @@ void	data_init(t_data *data, t_cub *cub)
 	data->resy = 64;					// here 60 is the resolution of each square of the map
 	data->posx = cub->spawnx * data->resx;	// init player position in the map.
 	data->posy = cub->spawny * data->resy;	// here 4 is the initial pos
-	data->pa = P3;
+	data->pa = dir_pos(cub);
 	data->pdx = cos(data->pa) * 1.5;
 	data->pdy = sin(data->pa) * 1.5;
 }
