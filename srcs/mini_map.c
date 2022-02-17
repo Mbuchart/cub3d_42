@@ -42,8 +42,9 @@ void	put_player(t_data *data, int x, int y)
 	k = 0;
 	while (k < 5)
 	{
-		my_mlx_pixel_put(data, (x + data->pdx * k),
-			(y + data->pdy * k), 0x00FFFF00);
+		if ((x + data->pdx * k) >= 0 && (y + data->pdy * k) >= 0)
+			my_mlx_pixel_put(data, (x + data->pdx * k),
+				(y + data->pdy * k), 0x00FFFF00);
 		k += 0.1;
 	}
 }
