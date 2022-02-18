@@ -77,8 +77,8 @@ void	data_init(t_data *data, t_cub *cub)
 	data->posx = 32 + cub->spawnx * data->resx;	// init player position in the map.
 	data->posy = 32 + cub->spawny * data->resy;	// here 4 is the initial pos
 	data->pa = dir_pos(cub);
-	data->pdx = cos(data->pa) * 1.5;
-	data->pdy = sin(data->pa) * 1.5;
+	data->pdx = cos(data->pa) * 2;
+	data->pdy = sin(data->pa) * 2;
 }
 
 int	ft_exit(t_data *data)

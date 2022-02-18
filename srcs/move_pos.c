@@ -29,16 +29,16 @@ void	move_player2(t_data *data)
 		data->pa -= 0.02;
 		if (data->pa < 0)
 			data->pa += 2 * PI;
-		data->pdx = cos(data->pa) * 1.5;
-		data->pdy = sin(data->pa) * 1.5;
+		data->pdx = cos(data->pa) * 2;
+		data->pdy = sin(data->pa) * 2;
 	}
 	else if (data->dro == 1)
 	{
 		data->pa += 0.02;
 		if (data->pa > (2 * PI))
 			data->pa -= 2 * PI;
-		data->pdx = cos(data->pa) * 1.5;
-		data->pdy = sin(data->pa) * 1.5;
+		data->pdx = cos(data->pa) * 2;
+		data->pdy = sin(data->pa) * 2;
 	}
 }
 
