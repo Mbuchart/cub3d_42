@@ -74,8 +74,8 @@ void	data_init(t_data *data, t_cub *cub)
 	data->mapy = cub->height;	// map[mapy][mapx]
 	data->resx = 64;					// init resolution of each square of the map
 	data->resy = 64;					// here 60 is the resolution of each square of the map
-	data->posx = cub->spawnx * data->resx;	// init player position in the map.
-	data->posy = cub->spawny * data->resy;	// here 4 is the initial pos
+	data->posx = 32 + cub->spawnx * data->resx;	// init player position in the map.
+	data->posy = 32 + cub->spawny * data->resy;	// here 4 is the initial pos
 	data->pa = dir_pos(cub);
 	data->pdx = cos(data->pa) * 1.5;
 	data->pdy = sin(data->pa) * 1.5;
