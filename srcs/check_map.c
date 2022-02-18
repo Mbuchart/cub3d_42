@@ -55,6 +55,8 @@ void	scan_errors(t_cub *cub, char **map)
 		}
 		i++;
 	}
+	if (cub->sp_dir == '!')
+		ft_stop(EXIT_FAILURE, cub, "Error\nMust have a spawn position");
 }
 
 void	malloc_map_2(t_cub *cub, char *map)
