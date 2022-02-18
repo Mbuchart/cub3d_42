@@ -70,7 +70,7 @@ void	get_elements(t_cub *cub)
 	else if (ft_strnstr(cub->line, "C ", 2) && cub->ceiling[0] == -1)
 		get_colors(cub, cub->ceiling);
 	else
-		ft_stop(EXIT_FAILURE, cub, "Elements organized in a wrong way in .cub");
+		ft_stop(EXIT_FAILURE, cub, "Error\nElements organized in a wrong way in .cub");
 }
 
 void	parse_dot_cub(char *map, t_cub *cub)

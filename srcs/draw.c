@@ -3,7 +3,6 @@
 void	draw_we(t_data *data)
 {
 	data->wall_index = data->colorw;           //index de tex[wall_index] which wall
-									// which wall so no we ea ??
 	if (data->wall_index == 0 || data->wall_index == 1)
 	{
 		data->pos_tex = 0;          //draw_west
@@ -13,15 +12,6 @@ void	draw_we(t_data *data)
 		data->pos_tex = data->rx - (data->j - 64);
 		data->pos_tex = (data->pos_tex - 64) * -1;
 	}
-	// if (data->wall_index == 1)
-	// {
-	// 	data->pos_tex = 0;          //draw_west
-	// 	data->j = 0;
-	// 	while (data->j < data->rx)
-	// 		data->j += 64;
-	// 	data->pos_tex = data->rx - (data->j - 64);
-	// 	data->pos_tex = (data->pos_tex - 64) * -1;
-	// }
 	if (data->wall_index == 2 || data->wall_index == 3)
 	{
 		data->pos_tex = 0;          //draw_west

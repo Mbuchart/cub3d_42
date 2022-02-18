@@ -14,7 +14,8 @@
 
 void	flood_fill_algo(t_cub *cub, int limit, int x, int y)
 {
-	if (!cub->map[x][y] || cub->map[x][y] == ' ' || x < 0 || y < 0)
+	if (x > cub->height || y >= ft_strlen(cub->map[x]) || !cub->map[x][y]
+			|| cub->map[x][y] == ' ' || x < 0 || y < 0)
 		ft_stop(EXIT_FAILURE, cub, "Error\nMap doesn't fit criterias.");
 	if (limit > 28000)
 		ft_stop(EXIT_FAILURE, cub, "Error\nMap must be smaller.");
