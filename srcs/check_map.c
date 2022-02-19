@@ -86,6 +86,8 @@ void	check_map(t_cub *cub, char *map)
 
 	i = 0;
 	cub->map = ft_split(map, '\n');
+	if (cub->map == NULL)
+		ft_stop(1, cub, "Error\nft_split failed");
 	find_max(cub);
 	scan_errors(cub, cub->map);
 	cub->map[cub->spawnx][cub->spawny] = '0';

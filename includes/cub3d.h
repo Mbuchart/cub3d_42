@@ -184,7 +184,7 @@ void	flood_fill_algo(t_cub *cub, int limit, int x, int y);
 //execution///////////////////////////////////////////////////////////
 
 //start_game.c
-int		ft_exit(t_data *data, char *str);
+int		ft_exit(t_data *data);
 void	start_game(t_cub *cub);
 
 //load_texture.c

@@ -48,13 +48,14 @@ void	data_init(t_data *data, t_cub *cub)
 	data->pdy = sin(data->pa) * 2;
 }
 
-int	ft_exit(t_data *data, char *str)
+int	ft_exit(t_data *data)
 {
 	mlx_destroy_image(data->mlx, data->img);
 	mlx_destroy_window(data->mlx, data->win);
 	mlx_destroy_display(data->mlx);
 	free(data->mlx);
-	ft_stop(1, data->cub, str);
+	free_all(data->cub, 0);
+	exit(0);
 	return (1);
 }
 

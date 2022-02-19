@@ -8,7 +8,8 @@ void	free_tex(t_data *data, t_mlx *tex, int i)
 			mlx_destroy_image(data->mlx, tex[i].img);
 		i++;
 	}
-	ft_exit(data, "Error\nFailed to load textures.");
+	ft_putstr_fd("Error\nFailed to load textures.\n", 2);
+	ft_exit(data);
 }
 
 void	bufferize_texture(t_data *data, t_mlx *tex, int *dst)
