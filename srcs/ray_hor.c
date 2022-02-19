@@ -24,7 +24,7 @@ float	draw_rays_hor3d2(t_data *data)
 			data->dof = data->mapx;
 			data->hx = data->rx;
 			data->hy = data->ry;
-			if (data->ra > PI)		// north color / texture
+			if (data->ra >= PI)		// north color / texture
 				data->colorw = 1;
 			if (data->ra < PI)		// south color / texture
 				data->colorw = 0;

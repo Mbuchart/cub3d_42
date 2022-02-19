@@ -46,9 +46,7 @@ int	hook_released(int keycode, t_data *data)
 		data->dro = 0;
 	if (keycode == 65307)								// code echap = 65307 dans ce cas free tout et exit
 	{
-		mlx_destroy_image(data->mlx, data->img);
-		mlx_destroy_window(data->mlx, data->win);
-		exit(0);		// ft_exit();
+		ft_exit(data, "Goodbye!");
 	}
 	return (keycode);
 }

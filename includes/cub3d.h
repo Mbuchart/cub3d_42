@@ -11,8 +11,8 @@
 # include <fcntl.h>
 # include <errno.h>
 
-# define WIN_H 540
-# define WIN_L 960
+# define WIN_H 810
+# define WIN_L 1440
 # define HOOK_KEY_PRESSED 1L<<0
 # define HOOK_KEY_RELEASED 1L<<1
 # define PI 3.14159
@@ -72,10 +72,11 @@ struct			s_mlx
 typedef struct s_data t_data;
 struct	s_data
 {
+	t_cub	*cub;
 	char	**map;
 	int		mapx;
 	int		mapy;
-	int		div;
+	float	div;
 	//textures
 	int		tex[7][4096];
 	char	*no;
@@ -183,6 +184,7 @@ void	flood_fill_algo(t_cub *cub, int limit, int x, int y);
 //execution///////////////////////////////////////////////////////////
 
 //start_game.c
+int		ft_exit(t_data *data, char *str);
 void	start_game(t_cub *cub);
 
 //load_texture.c

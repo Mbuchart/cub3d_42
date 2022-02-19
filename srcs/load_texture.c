@@ -8,8 +8,7 @@ void	free_tex(t_data *data, t_mlx *tex, int i)
 			mlx_destroy_image(data->mlx, tex[i].img);
 		i++;
 	}
-	printf("Failed to load texture\n");
-	exit(0);        // ft_exit!!
+	ft_exit(data, "Error\nFailed to load textures.");
 }
 
 void	bufferize_texture(t_data *data, t_mlx *tex, int *dst)
@@ -35,12 +34,6 @@ void	load_more_texture(t_data *data, t_mlx *tex)
 {
 	int		i;
 
-	// tex[4].img = mlx_xpm_file_to_image(data->mlx, "./textures/wood.xpm",
-	// 	&tex[4].x, &tex[4].y);
-	// tex[5].img = mlx_xpm_file_to_image(data->mlx, "./textures/pillar.xpm",
-	// 	&tex[5].x, &tex[5].y);
-	// tex[6].img = mlx_xpm_file_to_image(data->mlx, "./textures/greenlight.xpm",
-	// 	&tex[6].x, &tex[6].y);
 	i = 0;
 	while (i < 4)
 	{

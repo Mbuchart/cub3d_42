@@ -75,11 +75,11 @@ void	draw_init(t_data *data)
 		data->ca -= 2 * PI;
 	draw_we(data);
 	data->loff = 0;
-	data->distt = data->distt * cos(data->ca);
+		data->distt = data->distt * cos(data->ca);
 	data->lineh = (data->resx * data->mh) / data->distt;
+	data->dx = ((data->mh / 2) - data->lineh / 2);
 	data->chl = data->lineh / 64;
 	data->ch = data->chl;
-	data->dx = ((data->mh / 2) - data->lineh / 2);
 	data->di = 0;
 }
 

@@ -6,16 +6,16 @@ void	get_dist_ray(t_data *data)
 	data->rpdy = sin(data->ra) * 2;
 	data->hx = data->posx;
 	data->hy = data->posy;
-	if (data->ra != 0 && data->ra != PI)
+	// if (data->ra != 0 && data->ra != PI)
 		data->disth = draw_rays_hor3d(data);
-	if (data->ra != P2 && data->ra != P3)
+	// if (data->ra != P2 && data->ra != P3)
 		data->distv = draw_rays_ver3d(data);
 	if ((data->distv >= 0 && data->distv < data->disth) || data->disth < 0)
-		data->distt = data->distv;				// save distance to wall
+		data->distt = data->distv;	// save distance to wall
 	else if ((data->disth >= 0 && data->disth < data->distv) || data->distv < 0)
 	{
 		draw_rays_hor3d(data);
-		data->distt = data->disth;				// save distance to wall
+		data->distt = data->disth;	// save distance to wall
 	}
 }
 

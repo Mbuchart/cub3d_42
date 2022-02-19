@@ -14,8 +14,9 @@
 
 void	flood_fill_algo(t_cub *cub, int limit, int x, int y)
 {
-	if (x > cub->height || y > cub->width || y > ft_strlen(cub->map[x])
-			|| !cub->map[x][y] || cub->map[x][y] == ' ' || x < 0 || y < 0)
+	if (x > cub->height - 1 || y > cub->width - 1 || x < 0 || y < 0
+		|| y > ft_strlen(cub->map[x]) || !cub->map[x][y]
+		|| cub->map[x][y] == ' ')
 		ft_stop(EXIT_FAILURE, cub, "Error\nMap doesn't fit criterias.");
 	if (limit > 28000)
 		ft_stop(EXIT_FAILURE, cub, "Error\nMap must be smaller.");
@@ -76,8 +77,6 @@ void	find_max(t_cub *cub)
 		i++;
 	}
 	cub->height = i;
-	cub->height = cub->height - 1;
-	cub->width = cub->width - 1;
 }
 
 void	check_map(t_cub *cub, char *map)
