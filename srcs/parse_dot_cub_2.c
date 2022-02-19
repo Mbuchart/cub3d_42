@@ -41,7 +41,5 @@ void	parse_dot_cub_2(t_cub *cub)
 		|| cub->ceiling[1] < 0 || cub->ceiling[1] > 255
 		|| cub->ceiling[2] < 0 || cub->ceiling[2] > 255)
 		ft_stop(EXIT_FAILURE, cub, "Error\nC RGB must be >= 0 || <= 255");
-	cub->height = cub->height - 1;
-	cub->width = cub->width - 1;
 	reset_map(cub);
 }

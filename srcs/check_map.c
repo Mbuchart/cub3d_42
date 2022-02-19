@@ -14,7 +14,7 @@
 
 void	flood_fill_algo(t_cub *cub, int limit, int x, int y)
 {
-	if (x > cub->height || y >= ft_strlen(cub->map[x]) || !cub->map[x][y]
+	if (x > cub->height || y > ft_strlen(cub->map[x]) || !cub->map[x][y]
 			|| cub->map[x][y] == ' ' || x < 0 || y < 0)
 		ft_stop(EXIT_FAILURE, cub, "Error\nMap doesn't fit criterias.");
 	if (limit > 28000)
@@ -60,52 +60,22 @@ void	scan_errors(t_cub *cub, char **map)
 		ft_stop(EXIT_FAILURE, cub, "Error\nMust have a spawn position");
 }
 
-void	malloc_map_2(t_cub *cub, char *map)
+void	find_max(t_cub *cub)
 {
 	int	i;
 	int	j;
-	int	line;
 
 	i = 0;
-	j = 0;
-	line = 0;
-	while (map[i])
+	while (cub->map[i])
 	{
-		if (map[i] == '\n')
-		{
-			cub->map[j] = malloc(sizeof (char) * (line + 1));
-			if (cub->map[j] == NULL)
-				ft_stop(EXIT_FAILURE, cub, "Error\nMalloc failed");
-			ft_strcpy(cub->map[j], &map[i - line + 1]);
-			if (line > cub->width)
-				cub->width = line;
-			line = 0;
+		j = 0;
+		while (cub->map[i][j])
 			j++;
-		}
-		i++;
-		line++;
-	}
-}
-
-void	malloc_map(t_cub *cub, char *map)
-{
-	int	i;
-	int	size;
-
-	i = 0;
-	size = 0;
-	while (map[i])
-	{
-		if (map[i] == '\n')
-			size++;
+		if (cub->width < j)
+			cub->width = j;
 		i++;
 	}
-	cub->map = malloc(sizeof (char *) * (size + 1));
-	if (cub->map == NULL)
-		ft_stop(EXIT_FAILURE, cub, "Error\nMalloc failed");
-	cub->map[size] = NULL;
-	cub->height = size;
-	malloc_map_2(cub, map);
+	cub->height = i;
 }
 
 void	check_map(t_cub *cub, char *map)
@@ -114,7 +84,8 @@ void	check_map(t_cub *cub, char *map)
 	int	j;
 
 	i = 0;
-	malloc_map(cub, map); //j'aurais aussi pu faire un ft_split en fait... lol (-_-)'
+	cub->map = ft_split(map, '\n');
+	find_max(cub);
 	scan_errors(cub, cub->map);
 	cub->map[cub->spawnx][cub->spawny] = '0';
 	flood_fill_algo(cub, 0, cub->spawnx, cub->spawny);

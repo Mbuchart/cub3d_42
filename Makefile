@@ -1,13 +1,12 @@
 NAME	=	cub3D
 LIBFT	=	libft/libft.a
 CC		=	clang
-FLAGS	=	-O3 -Wall -Wextra -Werror -fsanitize=address
+FLAGS	=	-O3 -Wall -Wextra -Werror -g -fsanitize=address
 SRCS	=	srcs/check_map.c \
 				srcs/cub3d_utils.c \
 				srcs/cub3d.c \
 				srcs/parse_dot_cub.c \
 				srcs/parse_dot_cub_2.c \
-				srcs/del_print_ray.c \
 				srcs/draw.c \
 				srcs/hook.c \
 				srcs/load_texture.c \
@@ -43,5 +42,3 @@ fclean: clean
 	rm -f ${NAME}
 
 re: fclean all
-
-# -lft%  

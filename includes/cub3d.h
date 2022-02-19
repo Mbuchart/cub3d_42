@@ -175,18 +175,12 @@ void	malloc_dot_cub(t_cub *cub, char *map);
 void	display_description(t_cub *cub);// à retirer !!!
 
 //check_map.c
+void	find_max(t_cub *cub);
 void	check_map(t_cub *cub, char *map);
-void	malloc_map(t_cub *cub, char *map);
-void	malloc_map_2(t_cub *cub, char *map);
 void	scan_errors(t_cub *cub, char **map);
 void	flood_fill_algo(t_cub *cub, int limit, int x, int y);
 
 //execution///////////////////////////////////////////////////////////
-
-//libft_utils.c
-/*int     ft_strlen(char *str);
-int		ft_atoi(char *str);
-char	*ft_itoa(int n);*/
 
 //start_game.c
 void	start_game(t_cub *cub);
@@ -241,11 +235,5 @@ float	draw_rays_ver3d(t_data *data);
 
 //draw.c
 void	draw_3d(t_data *data);
-
-//convert_base.c
-//int		ft_atoi_base(char *str, char *base);
-
-//del_print_ray.c           a delete par la suite
-void	print_ray(t_data *data, int color);
 
 #endif

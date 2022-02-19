@@ -58,7 +58,8 @@ void	fill_from_dot_cub(t_cub *cub, char *map)
 	{
 		rd = read(cub->fd, (char *)&buf, 1);
 		cub->dot_cub[i] = buf;
-		i++;
+		if (rd == 1)
+			i++;
 	}
 	cub->dot_cub[i] = '\0';
 }
