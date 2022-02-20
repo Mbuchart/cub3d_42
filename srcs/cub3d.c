@@ -78,7 +78,6 @@ int	main(int argc, char **argv)
 	cub_init(&cub);
 	parse_dot_cub(argv[1], &cub);
 	parse_dot_cub_2(&cub);
-	//display_description(&cub);
 	start_game(&cub);
 	return (0);
 }

@@ -28,29 +28,29 @@ void	get_colors(t_cub *cub, int *tab)
 		tab[j] = ft_atoi(&cub->line[i]);
 		while (ft_isdigit(cub->line[i]))
 			i++;
-		if (cub->line[i] == ',' && j != 2) //peut on avoir aussi des espaces près des virgules ? dans ce cas : while (line[i] == ' ')
+		if (cub->line[i] == ',' && j != 2)
 			i++;
 		else if (j == 2)
 		{
 			while (cub->line[i] == ' ')
 				i++;
-			if (cub->line[i] != '\0') // ++ajouter une gestions d'erreur pour les chiffres rgb impossibles genre -764 ou 98154...
+			if (cub->line[i] != '\0')
 				ft_stop(EXIT_FAILURE, cub, "Error\nIssue in C or F RGB infos.");
 		}
 		j++;
 	}
 }
 
-void	find_texture(t_cub *cub, char **str)//**str = pointeur sur la bonne chaine dans la struct.
+void	find_texture(t_cub *cub, char **str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (ft_isalpha(cub->line[i]))
 		i++;
 	while (cub->line[i] == ' ')
 		i++;
-	*str = ft_strdup(&cub->line[i]);// *str car pointeur
+	*str = ft_strdup(&cub->line[i]);
 	if (i < 3 || i == 0 || !*str)
 		ft_stop(EXIT_FAILURE, cub, "Error\nIssue in textures infos");
 }
@@ -70,7 +70,7 @@ void	get_elements(t_cub *cub)
 	else if (ft_strnstr(cub->line, "C ", 2) && cub->ceiling[0] == -1)
 		get_colors(cub, cub->ceiling);
 	else
-		ft_stop(EXIT_FAILURE, cub, "Error\nElements organized in a wrong way in .cub");
+		ft_stop(EXIT_FAILURE, cub, "Error\nWrong elements orga in .cub");
 }
 
 void	parse_dot_cub(char *map, t_cub *cub)
@@ -83,7 +83,7 @@ void	parse_dot_cub(char *map, t_cub *cub)
 	fill_from_dot_cub(cub, map);
 	while (elements < 6)
 	{
-		if (mini_gnl(&cub->dot_cub[j], cub, &j) ==  0 && elements < 6)
+		if (mini_gnl(&cub->dot_cub[j], cub, &j) == 0 && elements < 6)
 			ft_stop(EXIT_FAILURE, cub, "Error\nWrong orga in .cub file");
 		if (cub->line)
 		{

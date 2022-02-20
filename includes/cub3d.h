@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cjullien <cjullien@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/02/20 12:50:44 by cjullien          #+#    #+#             */
+/*   Updated: 2022/02/20 12:50:47 by cjullien         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -13,11 +25,9 @@
 
 # define WIN_H 810
 # define WIN_L 1440
-# define HOOK_KEY_PRESSED 1L<<0
-# define HOOK_KEY_RELEASED 1L<<1
 # define PI 3.14159
-# define P2 PI / 2
-# define P3 3 * (PI / 2)
+# define P2 1.57079
+# define P3 4.71238
 # define DR 0.0174533
 # define TEX_H 64
 # define TEX_W 64
@@ -34,7 +44,7 @@ struct			s_cub
 	int		floor[3];
 	int		ceiling[3];
 	char	*dot_cub;
-	char 	**map;
+	char	**map;
 	char	*line;
 	char	*cub_file;
 	int		spawnx;
@@ -69,7 +79,7 @@ struct			s_mlx
 	int			right_dir;
 };
 
-typedef struct s_data t_data;
+typedef struct s_data	t_data;
 struct	s_data
 {
 	t_cub	*cub;
@@ -77,7 +87,6 @@ struct	s_data
 	int		mapx;
 	int		mapy;
 	float	div;
-	//textures
 	int		tex[7][4096];
 	char	*no;
 	char	*we;
@@ -95,7 +104,6 @@ struct	s_data
 	float	ca;
 	float	lineh;
 	float	loff;
-	//minilibx
 	void	*mlx;
 	void	*win;
 	void	*img;
@@ -105,10 +113,8 @@ struct	s_data
 	int		endian;
 	int		mh;
 	int		ml;
-	//resolution of map (still don't know if useful)
 	int		resx;
 	int		resy;
-	//position of player
 	int		w;
 	int		a;
 	int		s;
@@ -120,7 +126,6 @@ struct	s_data
 	float	pa;
 	float	pdx;
 	float	pdy;
-	//raycasting
 	float	r;
 	int		mx;
 	int		my;
@@ -173,7 +178,6 @@ void	reset_map(t_cub *cub);
 int		mini_gnl(char *map, t_cub *cub, int *j);
 void	fill_from_dot_cub(t_cub *cub, char *map);
 void	malloc_dot_cub(t_cub *cub, char *map);
-void	display_description(t_cub *cub);// à retirer !!!
 
 //check_map.c
 void	find_max(t_cub *cub);
@@ -232,6 +236,7 @@ float	draw_rays_hor3d(t_data *data);
 
 //ray_ver.c
 float	dist(float ax, float ay, float bx, float by);
+float	draw_ver_more(t_data *data);
 float	draw_rays_ver3d2(t_data *data);
 float	draw_rays_ver3d(t_data *data);
 

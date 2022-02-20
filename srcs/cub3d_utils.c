@@ -76,7 +76,7 @@ int	mini_gnl(char *map, t_cub *cub, int *j)
 	cub->line = NULL;
 	cub->line = malloc(sizeof(char) * (i + 1));
 	if (!cub->line)
-		return (0);//attention, on peut être sur une ligne vide
+		return (0);
 	i_copy = i;
 	i = 0;
 	while (i < i_copy && map[i] && map[i] != '\n')
@@ -85,34 +85,10 @@ int	mini_gnl(char *map, t_cub *cub, int *j)
 		i++;
 	}
 	cub->line[i] = '\0';
-	while (map[i] && map[i] == '\n')//"les informations de chaque élément peuvent être séparées par un ou plusieurs espace(s)." && "chaque type d’élément peut être séparée par une ou plusieurs lignes vides."
+	while (map[i] && map[i] == '\n')
 		i++;
 	*j = *j + i;
 	if (map[i] == '\0' || map[i + 1] == '\0')
 		return (0);
 	return (1);
-}
-
-void	display_description(t_cub *cub)
-{
-	printf("********* Start of descrption display *********\n");
-	printf("North path = %s\n", cub->north);
-	printf("South path = %s\n", cub->south);
-	printf("West path = %s\n", cub->west);
-	printf("East path = %s\n\n", cub->east);
-	printf("Floor parameters = %d, %d, %d\n", cub->floor[0], cub->floor[1], cub->floor[2]);
-	printf("Ceiling parameters = %d, %d, %d\n", cub->ceiling[0], cub->ceiling[1], cub->ceiling[2]);
-	printf("Spawn dir : %c\n", cub->sp_dir);
-	printf("map height : %d, map width : %d\n", cub->height, cub->width);
-	printf("Spawn pos X : %d, Spawn pos Y : %d (X : vertical et Y horizontal...)\n", cub->spawnx, cub->spawny);
-	int i = 0;
-	printf("*************   MAP : début\n");
-	while (cub->map[i])
-	{
-		printf("%s\n", cub->map[i]);
-		i++;
-	}
-	printf("*************   MAP : fin\n");
-	printf("... sur la map, la pos de spawn a été changée en '0'.\n");
-	printf("********* End of descrption display *********\n");
 }

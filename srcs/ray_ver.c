@@ -5,6 +5,19 @@ float	dist(float ax, float ay, float bx, float by)
 	return (sqrt((bx - ax) * (bx - ax) + (by - ay) * (by - ay)));
 }
 
+float	draw_ver_more(t_data *data)
+{
+	data->dof = data->mapx;
+	data->hx = data->rx;
+	data->hy = data->ry;
+	if (data->ra >= P2 && data->ra < P3)
+		data->colorw = 2;
+	if ((data->ra >= P3 && data->ra <= PI * 2)
+		|| (data->ra >= 0.000000 && data->ra < P2))
+		data->colorw = 3;
+	return (dist(data->posx, data->posy, data->hx, data->hy));
+}
+
 float	draw_rays_ver3d2(t_data *data)
 {
 	while (data->dof < data->mapx)
@@ -14,17 +27,7 @@ float	draw_rays_ver3d2(t_data *data)
 		if (out_of_map(data))
 			break ;
 		if (data->map[data->mx][data->my] == '1')
-		{
-			data->dof = data->mapx;
-			data->hx = data->rx;
-			data->hy = data->ry;
-			if (data->ra >= P2 && data->ra < P3)		// west color / texture
-				data->colorw = 2;
-			if ((data->ra >= P3 && data->ra <= PI * 2)
-				|| (data->ra >= 0.000000 && data->ra < P2))		// east color / texture
-				data->colorw = 3;
-			return (dist(data->posx, data->posy, data->hx, data->hy));
-		}
+			return (draw_ver_more(data));
 		else
 		{
 			data->rx += data->xo;
@@ -39,21 +42,21 @@ float	draw_rays_ver3d(t_data *data)
 {
 	data->dof = 0;
 	data->ntan = -tan(data->ra);
-	if (data->ra > P2 || data->ra < P3)		// looking down (east)
+	if (data->ra > P2 || data->ra < P3)
 	{
 		data->rx = (((int)data->posx / 64) * 64) - 0.0001;
 		data->ry = (data->posx - data->rx) * data->ntan + data->posy;
 		data->xo = -64;
 		data->yo = -data->xo * data->ntan;
 	}
-	if (data->ra < P2 || data->ra > P3)		// looking down (west)
+	if (data->ra < P2 || data->ra > P3)
 	{
 		data->rx = (((int)data->posx / 64) * 64) + 64;
 		data->ry = (data->posx - data->rx) * data->ntan + data->posy;
 		data->xo = 64;
 		data->yo = -data->xo * data->ntan;
 	}
-	if (data->ra == P2 || data->ra == P3)	// impossible to touch a wall (south || north)
+	if (data->ra == P2 || data->ra == P3)
 	{
 		data->rx = data->posx;
 		data->ry = data->posy;

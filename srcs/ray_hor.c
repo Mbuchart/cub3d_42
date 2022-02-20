@@ -24,9 +24,9 @@ float	draw_rays_hor3d2(t_data *data)
 			data->dof = data->mapx;
 			data->hx = data->rx;
 			data->hy = data->ry;
-			if (data->ra >= PI)		// north color / texture
+			if (data->ra >= PI)
 				data->colorw = 1;
-			if (data->ra < PI)		// south color / texture
+			if (data->ra < PI)
 				data->colorw = 0;
 			return (dist(data->posx, data->posy, data->hx, data->hy));
 		}
@@ -44,21 +44,21 @@ float	draw_rays_hor3d(t_data *data)
 {
 	data->dof = 0;
 	data->atan = -1 / tan(data->ra);
-	if (data->ra > PI)						// looking down (south)
+	if (data->ra > PI)
 	{
 		data->ry = (((int)data->posy / 64) * 64) - 0.0001;
 		data->rx = (data->posy - data->ry) * data->atan + data->posx;
 		data->yo = -64;
 		data->xo = -data->yo * data->atan;
 	}
-	if (data->ra < PI)						// looking up (north)
+	if (data->ra < PI)
 	{
 		data->ry = (((int)data->posy / 64) * 64) + 64;
 		data->rx = (data->posy - data->ry) * data->atan + data->posx;
 		data->yo = 64;
 		data->xo = -data->yo * data->atan;
 	}
-	if (data->ra == 0 || data->ra == PI)	// impossible to touch a wall (east || west)
+	if (data->ra == 0 || data->ra == PI)
 	{
 		data->rx = data->posx;
 		data->ry = data->posy;
