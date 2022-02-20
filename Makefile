@@ -35,6 +35,7 @@ $(NAME): $(OBJS) $(INCS)
 	$(CC) $(FLAGS) -I includes -Imlx -c $< -o $@
 
 clean:
+	make clean -C mlx
 	make fclean -C libft
 	rm -f ${OBJS}
 
