@@ -86,8 +86,8 @@ void	start_game(t_cub *cub)
 	draw_rays3d(&data);
 	draw_map_2d(&data, data.map);
 	mlx_put_image_to_window(data.mlx, data.win, data.img, 0, 0);
-	mlx_hook(data.win, 2, 1L<<0, &hook_pressed, &data);
-	mlx_hook(data.win, 3, 1L<<1, &hook_released, &data);
+	mlx_hook(data.win, 2, 1L << 0, &hook_pressed, &data);
+	mlx_hook(data.win, 3, 1L << 1, &hook_released, &data);
 	mlx_hook(data.win, 33, 1L << 17, &ft_exit, &data);
 	mlx_loop_hook(data.mlx, &next_frame, &data);
 	mlx_loop(data.mlx);
