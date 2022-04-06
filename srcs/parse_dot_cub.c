@@ -12,6 +12,21 @@
 
 #include "../includes/cub3d.h"
 
+void	pass_spaces(t_cub *cub, char *str, int *i)
+{
+	int	coma;
+
+	coma = 0;
+	while (str[*i] == ',' || str[*i] == ' ')
+	{
+		if (str[*i] == ',')
+			coma++;
+		*i += 1;
+	}
+	if (coma != 1)
+		ft_stop(EXIT_FAILURE, cub, "Error\nIssue in C or F RGB infos.");
+}
+
 void	get_colors(t_cub *cub, int *tab)
 {
 	int	i;
@@ -28,8 +43,8 @@ void	get_colors(t_cub *cub, int *tab)
 		tab[j] = ft_atoi(&cub->line[i]);
 		while (ft_isdigit(cub->line[i]))
 			i++;
-		if (cub->line[i] == ',' && j != 2)
-			i++;
+		if (j != 2)
+			pass_spaces(cub, cub->line, &i);
 		else if (j == 2)
 		{
 			while (cub->line[i] == ' ')
@@ -83,7 +98,7 @@ void	parse_dot_cub(char *map, t_cub *cub)
 	fill_from_dot_cub(cub, map);
 	while (elements < 6)
 	{
-		if (mini_gnl(&cub->dot_cub[j], cub, &j) == 0 && elements < 6)
+		if (mini_gnl(&cub->dot_cub[j], cub, &j, 0) == 0 && elements < 6)
 			ft_stop(EXIT_FAILURE, cub, "Error\nWrong orga in .cub file");
 		if (cub->line)
 		{

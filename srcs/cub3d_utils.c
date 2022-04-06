@@ -64,15 +64,14 @@ void	fill_from_dot_cub(t_cub *cub, char *map)
 	cub->dot_cub[i] = '\0';
 }
 
-int	mini_gnl(char *map, t_cub *cub, int *j)
+int	mini_gnl(char *map, t_cub *cub, int *j, int i)
 {
-	int	i;
 	int	i_copy;
 
-	i = 0;
 	while (map[i] && map[i] != '\n')
 		i++;
-	free(cub->line);
+	if (cub->line)
+		free(cub->line);
 	cub->line = NULL;
 	cub->line = malloc(sizeof(char) * (i + 1));
 	if (!cub->line)

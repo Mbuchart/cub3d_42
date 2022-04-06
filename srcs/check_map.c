@@ -12,6 +12,26 @@
 
 #include "../includes/cub3d.h"
 
+void	check_consecutive_nl(t_cub *cub, char *str)
+{
+	int	i;
+	int	nl;
+
+	i = 0;
+	nl = 0;
+	while (str[i])
+	{
+		if (str[i] == '\n')
+			nl++;
+		else
+			nl = 0;
+		if (nl == 2)
+			ft_stop(EXIT_FAILURE, cub,
+				"Error\nConsecutive newlines after .cub element description.");
+		i++;
+	}
+}
+
 void	flood_fill_algo(t_cub *cub, int limit, int x, int y)
 {
 	if (x > cub->height - 1 || y > cub->width - 1 || x < 0 || y < 0
@@ -85,6 +105,7 @@ void	check_map(t_cub *cub, char *map)
 	int	j;
 
 	i = 0;
+	check_consecutive_nl(cub, map);
 	cub->map = ft_split(map, '\n');
 	if (cub->map == NULL)
 		ft_stop(1, cub, "Error\nft_split failed");

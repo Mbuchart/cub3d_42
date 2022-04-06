@@ -58,12 +58,12 @@ void	move_player(t_data *data)
 {
 	pos_wall(data);
 	if (data->w == 1)
-		{
-			if (data->map[data->iposx_add_wxo][data->iposy] == '0')
-				data->posx += data->pdy * 3;
-			if (data->map[data->iposx][data->iposy_add_wyo] == '0')
-				data->posy += data->pdx * 3;
-		}
+	{
+		if (data->map[data->iposx_add_wxo][data->iposy] == '0')
+			data->posx += data->pdy * 3;
+		if (data->map[data->iposx][data->iposy_add_wyo] == '0')
+			data->posy += data->pdx * 3;
+	}
 	else if (data->s == 1)
 	{
 		if (data->map[data->iposx_sub_wxo][data->iposy] == '0')

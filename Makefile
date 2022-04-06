@@ -1,45 +1,51 @@
+.PHONY: all clean fclean re
+
 NAME	=	cub3D
-LIBFT	=	libft/libft.a
 CC		=	clang
-FLAGS	=	-O3 -Wall -Wextra -Werror
-SRCS	=	srcs/check_map.c \
-				srcs/cub3d_utils.c \
-				srcs/cub3d.c \
-				srcs/parse_dot_cub.c \
-				srcs/parse_dot_cub_2.c \
-				srcs/draw.c \
-				srcs/hook.c \
-				srcs/load_texture.c \
-				srcs/start_game.c \
-				srcs/mini_map.c \
-				srcs/mlx_utils.c \
-				srcs/move_pos_d_a.c \
-				srcs/move_pos.c \
-				srcs/ray_hor.c \
-				srcs/ray_ver.c \
-				srcs/raycasting.c
-INCS	=	$(addprefix includes/, cub3d.h)
-OBJS	=	$(SRCS:.c=.o)
-# Linux :	-lm -lbsd -lX11 -lXext
-# Mac	:	-framework OpenGL -framework AppKit
+FLAGS	=	-Wall -Wextra -Werror -g3
+INC		=	includes
+OBJ		=	objs
+SRC		=	srcs
+LIBFT	=	libft
+LIBMLX	=	libmlx
+INCS	=	$(addprefix $(INC)/, cub3d.h)
+OBJS	=	$(addprefix $(OBJ)/, $(SRCS:.c=.o))
+SRCS	=	check_map.c \
+				cub3d_utils.c \
+				parse_dot_cub.c \
+				parse_dot_cub_2.c \
+				draw.c \
+				hook.c \
+				load_texture.c \
+				start_game.c \
+				mini_map.c \
+				mlx_utils.c \
+				move_pos_d_a.c \
+				move_pos.c \
+				ray_hor.c \
+				ray_ver.c \
+				raycasting.c
 
-all: $(NAME)
+all: init $(NAME)
 
+init:
+	mkdir -p $(OBJ)
+	make -C $(LIBFT)
+	make -C $(LIBMLX)
 
 $(NAME): $(OBJS) $(INCS)
-	make -C libft
-	make -C mlx
-	$(CC) $(FLAGS) -I includes -o $(NAME) $(OBJS) libft/libft.a -Lmlx -lmlx -lX11 -lbsd -lm -lXext
+	$(CC) $(FLAGS) -I$(INC) -o $(NAME) srcs/cub3d.c $(OBJS) -Llibft -lft -Llibmlx -lmlx -lX11 -lbsd -lm -lXext
 
-%.o: %.c $(INCS)
-	$(CC) $(FLAGS) -I includes -Imlx -c $< -o $@
+$(OBJ)/%.o: $(SRC)/%.c $(INCS)
+	$(CC) $(FLAGS) -I$(INC) -c $< -o $@
 
 clean:
-	make clean -C mlx
-	make fclean -C libft
-	rm -f ${OBJS}
+	rm -rf $(OBJ)
+	make -C $(LIBFT) clean
+	make -C $(LIBMLX) clean
 
 fclean: clean
-	rm -f ${NAME}
+	rm -rf $(NAME)
+	make -C $(LIBFT) fclean
 
 re: fclean all
