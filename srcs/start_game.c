@@ -20,13 +20,13 @@ float	rgbtohex(int r, int g, int b)
 float	dir_pos(t_cub *cub)
 {
 	if (cub->sp_dir == 'N')
-		return (P3);
-	if (cub->sp_dir == 'S')
-		return (P2);
-	if (cub->sp_dir == 'W')
 		return (PI);
-	if (cub->sp_dir == 'E')
+	if (cub->sp_dir == 'S')
 		return (0);
+	if (cub->sp_dir == 'W')
+		return (P3);
+	if (cub->sp_dir == 'E')
+		return (P2);
 	return (0);
 }
 
@@ -51,8 +51,8 @@ void	data_init(t_data *data, t_cub *cub)
 	data->posx = 32 + cub->spawnx * data->resx;
 	data->posy = 32 + cub->spawny * data->resy;
 	data->pa = dir_pos(cub);
-	data->pdx = cos(data->pa) * 2;
-	data->pdy = sin(data->pa) * 2;
+	data->pdx = sin(data->pa) * 2;
+	data->pdy = cos(data->pa) * 2;
 }
 
 int	ft_exit(t_data *data)

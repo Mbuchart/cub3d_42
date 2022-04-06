@@ -46,7 +46,7 @@ void	put_player(t_data *data, int x, int y)
 		j = -2;
 		while (j <= 2)
 		{
-			my_mlx_pixel_put(data, x + j, y + i, 0x00FFFF00);
+			my_mlx_pixel_put(data, y + i, x + j, 0x00FFFF00);			//switched 'x + j' and 'y + i'
 			j++;
 		}
 		i++;
@@ -54,9 +54,9 @@ void	put_player(t_data *data, int x, int y)
 	k = 0;
 	while (k < 5)
 	{
-		if ((x + data->pdx * k) >= 0 && (y + data->pdy * k) >= 0)
-			my_mlx_pixel_put(data, (x + data->pdx * k),
-				(y + data->pdy * k), 0x00FFFF00);
+		if ((x + data->pdy * k) >= 0 && (y + data->pdx * k) >= 0)
+			my_mlx_pixel_put(data, (y + data->pdx * k),
+				(x + data->pdy * k), 0x00FFFF00);	//switched 'x' and 'y' || and switched pdy and pdx
 		k += 0.1;
 	}
 }
@@ -85,20 +85,20 @@ void	draw_map_2d(t_data *data, char **map)
 	int	x;
 	int	y;
 
-	x = 0;
+	y = 0;
 	find_div(data);
-	while (map[x] != NULL)
+	while (map[y] != NULL)		//map[x] -> map[y] on all map call in this function
 	{
-		y = 0;
-		while (map[x][y])
+		x = 0;
+		while (map[y][x])
 		{
-			if (map[x][y] == '1')
+			if (map[y][x] == '1')
 				draw_map_2d2(data, x, y, 0x00FF0000);
-			if (map[x][y] == '0')
+			if (map[y][x] == '0')
 				draw_map_2d2(data, x, y, 0x00FF8888);
-			y++;
+			x++;
 		}
-		x++;
+		y++;
 	}
 	put_player(data, data->posx / data->div, data->posy / data->div);
 }

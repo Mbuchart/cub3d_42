@@ -70,16 +70,16 @@ void	init_tex(t_mlx *tex)
 
 void	load_texture(t_data *data)
 {
-	t_mlx	tex[8];
+	t_mlx	tex[4];
 
 	init_tex(tex);
-	tex[0].img = mlx_xpm_file_to_image(data->mlx, data->so,
+	tex[3].img = mlx_xpm_file_to_image(data->mlx, data->so,
 			&tex[0].x, &tex[0].y);
-	tex[1].img = mlx_xpm_file_to_image(data->mlx, data->no,
+	tex[2].img = mlx_xpm_file_to_image(data->mlx, data->no,
 			&tex[1].x, &tex[1].y);
-	tex[2].img = mlx_xpm_file_to_image(data->mlx, data->we,
+	tex[1].img = mlx_xpm_file_to_image(data->mlx, data->we,
 			&tex[2].x, &tex[2].y);
-	tex[3].img = mlx_xpm_file_to_image(data->mlx, data->ea,
+	tex[0].img = mlx_xpm_file_to_image(data->mlx, data->ea,
 			&tex[3].x, &tex[3].y);
 	load_more_texture(data, tex);
 }

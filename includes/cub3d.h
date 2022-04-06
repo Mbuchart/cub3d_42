@@ -214,6 +214,12 @@ void	move_player_d(t_data *data);
 void	move_player_a2(t_data *data);
 void	move_player_a(t_data *data);
 
+//move_pos_w_s.c
+void	move_player_w2(t_data *data);
+void	move_player_w(t_data *data);
+void	move_player_s2(t_data *data);
+void	move_player_s(t_data *data);
+
 //mlx_utils.c
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int		mlx_pixel_get(t_mlx *mlx, int x, int y);

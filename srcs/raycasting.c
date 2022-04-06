@@ -32,9 +32,9 @@ void	get_dist_ray(t_data *data)
 void	init_ra(t_data *data, int i)
 {
 	if (i == 0)
-		data->ra = data->pa - DR * 30;
+		data->ra = data->pa + DR * 30;
 	else if (i == 1)
-		data->ra += (DR * 60) / WIN_L;
+		data->ra -= (DR * 60) / WIN_L;
 	if (data->ra < 0)
 		data->ra += 2 * PI;
 	if (data->ra > 2 * PI)
